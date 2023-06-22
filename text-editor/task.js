@@ -5,12 +5,11 @@ textArea.addEventListener('input', () => {
     localStorage.setItem('textarea', textArea.value)
 })
 
-if (localStorage.textarea) {
-    textArea.value = localStorage.textarea
-}
+    // textArea.value = localStorage.textarea
+    textArea.value = localStorage.getItem('textarea')
+
+
 clearButton.addEventListener('click',  () => {
-    if (localStorage.textarea) {
         localStorage.removeItem('textarea')
-    }
     textArea.value = ''
 })

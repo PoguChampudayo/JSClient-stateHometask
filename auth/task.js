@@ -14,16 +14,19 @@ form.addEventListener('submit', (event) => {
     event.preventDefault()
 
     let xhr = new XMLHttpRequest()
+    xhr.responseType = 'json'
     let transferData = new FormData(form)
 
     xhr.addEventListener('load', function () {
-        let response = JSON.parse(xhr.responseText)
-        if (!response.success) {
+        // let response = JSON.parse(xhr.responseText)
+        if (!xhr.response.success) {
             alert('Комбинация логин-пароль неверна!')
+            form.reset()
         }
         else {
-            localStorage.setItem('user_id', response.user_id)
-            authentificate(response.user_id)
+            localStorage.setItem('user_id', xhr.response.user_id)
+            authentificate(xhr.response.user_id)
+            form.reset()
         }
     })
 
